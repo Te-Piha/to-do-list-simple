@@ -17,7 +17,6 @@ function HomePage() {
   }
 
   const deleteTask = (delTask) => {
-    console.log(delTask)
 
     const newTasks = tasks.filter(task => task !== delTask)
     setNewTask(newTasks)
@@ -25,7 +24,14 @@ function HomePage() {
   }
 
   //editTask
+const editTask = (task) => {
+  const updateTaskText = document.getElementById("task").value
 
+    if (updateTaskText){
+      const updatedTask = tasks.map(arrTask => arrTask === task ? updateTaskText : arrTask )
+      setNewTask(updatedTask)
+    }
+}
 
   //api call useEffect 
 
@@ -43,7 +49,7 @@ function HomePage() {
       </label>
       <div>
         {tasks.map((task) =>
-        (<li> {task} <button onClick={e => deleteTask(task)} > Task completed </button> </li>
+        (<li> {task} <button onClick={e => deleteTask(task)} > Task completed </button> <button onClick={e => editTask(task)}> edit task </button></li>
         ))}
       </div>
 
